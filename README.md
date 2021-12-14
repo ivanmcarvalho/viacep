@@ -6,14 +6,14 @@
 
 O projeto está processando apenas requisições JSON, continua em desenvolvimento para outros tipos.
 
-## :tw-1f50c: Pré-requisitos
+## Pré-requisitos
 
 Antes de começar, verifique se você atendeu aos seguintes requisitos:
 
 * Java SE-11
 * Spring Boot Spring Boot 2.6.1
 
-## :tw-1f3c1: Exemplo de busca pelo CEP 
+## Exemplo de busca pelo CEP 
 #### O método já executa a tarefa de limpar o CEP  e/ou verifiar se o formato é válido   
 
 Para buscar um cep:
