@@ -1,14 +1,13 @@
-package viacepApi;
+package viacepApiConsumer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Application {
+public class AppViacep {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
-		System.out.println("Bem Vindo!");
+		SpringApplication.run(AppViacep.class, args);
 	}
 
 }
