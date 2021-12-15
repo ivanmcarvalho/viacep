@@ -8,8 +8,8 @@ class AppEnderecoTests {
 
 	@Test
 	void contextLoads() {
-		
 		Cep dadosEndereco = ViacepClient.buscaEndereco("05508010");
+		
 		if(dadosEndereco.getErro() == null) {
 			
 			System.out.println("Logradouro.: " + dadosEndereco.getLogradouro());

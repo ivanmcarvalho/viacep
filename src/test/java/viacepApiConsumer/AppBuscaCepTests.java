@@ -1,7 +1,6 @@
 package viacepApiConsumer;
 
 import java.util.Arrays;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -9,14 +8,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 class AppBuscaCepTests {
 
 	@Test
-	void contextLoads() {
-		
-		// https://viacep.com.br/ws/SP/São Paulo/Rua Verena/json/
-		ViacepClient.setTipoRetorno("json"); // esta linha pode ser comentada o padrão é json
-		
+	void contextLoads() {		
+
 		String uf = "SP";
 		String cidade = "São Paulo";
-		String logradouro = "Berrini";
+		String logradouro = "Paulista";
 		
 		Endereco[] dadosCep = ViacepClient.buscaCep(uf, cidade, logradouro);
 		

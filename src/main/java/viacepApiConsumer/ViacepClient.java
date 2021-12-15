@@ -17,11 +17,10 @@ public class ViacepClient {
 	private static final String HTTP = "https";
 	private static final String HOST = "viacep.com.br";
     private static final Gson GSON   = new Gson();
-    public static String tipoRetorno = "json";    
     
 	public static Cep buscaEndereco(String cep) {
     	
-    	HttpHeaders authHeaders = Headers.makeHeader(tipoRetorno);
+    	HttpHeaders authHeaders = Headers.makeHeader();
 		
 		UriComponentsBuilder apiUriBuilder = UriComponentsBuilder.newInstance()
 				.scheme(HTTP)
@@ -34,12 +33,13 @@ public class ViacepClient {
 		RestTemplate rest = new RestTemplate();
 		String restBody = ""; 
 		HttpEntity<String> authEntity = new HttpEntity<String>(restBody, authHeaders);
+		Cep dados = null;
 		
 		try {
 	
 			ResponseEntity<String> entity = rest.exchange(pullsUri, HttpMethod.GET, authEntity, String.class);
 	        String jsonInString = entity.getBody();
-	        Cep dados = GSON.fromJson(jsonInString, Cep.class);
+	        dados = GSON.fromJson(jsonInString, Cep.class);
 	        
 	        if(dados.getErro() != null) {
 	        	dados.setErro("Cep Inválido");
@@ -58,8 +58,8 @@ public class ViacepClient {
     }
     public static Endereco[] buscaCep(String uf, String cidade, String logradouro) {
     	
-    	HttpHeaders authHeaders = Headers.makeHeader(tipoRetorno);
-		// https://viacep.com.br/ws/SP/S%C3%A3o%20Paulo/Rua%20Verena/json/
+    	HttpHeaders authHeaders = Headers.makeHeader();
+    	
 		UriComponentsBuilder apiUriBuilder = UriComponentsBuilder.newInstance()
 				.scheme(HTTP)
 				.host(HOST)
@@ -71,16 +71,14 @@ public class ViacepClient {
 		RestTemplate rest = new RestTemplate();
 		String restBody = ""; 
 		HttpEntity<String> authEntity = new HttpEntity<String>(restBody, authHeaders);
+		Endereco[] dados = null;
 		
 		try {
 	
 			ResponseEntity<String> entity = rest.exchange(pullsUri, HttpMethod.GET, authEntity, String.class);
-	        String jsonInString = entity.getBody();
-	        //Endereco dados = GSON.fromJson(jsonInString, Endereco.class);
-
-	          
+	        String jsonInString = entity.getBody();	          
 	        
-	        Endereco[] dados = GSON.fromJson(jsonInString, Endereco[].class);
+	        dados = GSON.fromJson(jsonInString, Endereco[].class);
 
 	        if(dados[0].getCep() == null) {
 	        	dados[0].setErro("Os dados informados são inválidos");
@@ -92,18 +90,11 @@ public class ViacepClient {
 		} catch (RestClientException e) {	
 			
 			String jsonInString = "[{\"erro\": \"O Formato dos Dados estão incorretos!\"}]";
-			Endereco[] dados = GSON.fromJson(jsonInString, Endereco[].class);
+			dados = GSON.fromJson(jsonInString, Endereco[].class);
 			return dados;
 			
 		}
     	
     }
-    
-    public static String getTipoRetorno() {
-		return tipoRetorno;
-	}
-	public static void setTipoRetorno(String tipoRetorno) {
-		ViacepClient.tipoRetorno = tipoRetorno;
-	}
 
 }

@@ -50,7 +50,7 @@ Para buscar um CEP pelo endereço:
 public static void main(String[] args){
 	String uf = "SP";
 	String cidade = "São Paulo";
-	String logradouro = "Berrini";
+	String logradouro = "Paulista";
 	
 	Endereco[] dadosCep = ViacepClient.buscaCep(uf, cidade, logradouro);
 	
