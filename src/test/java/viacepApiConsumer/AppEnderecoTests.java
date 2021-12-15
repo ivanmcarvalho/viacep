@@ -3,16 +3,13 @@ package viacepApiConsumer;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import viacepApiConsumer.Cep;
-import viacepApiConsumer.ViacepClient;
-
 @SpringBootTest
-class AppViacepTests {
+class AppEnderecoTests {
 
 	@Test
 	void contextLoads() {
 		
-		Cep dadosEndereco = ViacepClient.buscaEndereco("03614010");
+		Cep dadosEndereco = ViacepClient.buscaEndereco("05508010");
 		if(dadosEndereco.getErro() == null) {
 			
 			System.out.println("Logradouro.: " + dadosEndereco.getLogradouro());
